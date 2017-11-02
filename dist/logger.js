@@ -1,9 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var fs = require("fs");
-var log_levels_1 = require("./log-levels");
 var moment = require("moment");
-var Logger = (function () {
+var log_levels_1 = require("./log-levels");
+var Logger = /** @class */ (function () {
     function Logger() {
         /**
          * The log severity to display. Default is info.
@@ -59,46 +58,11 @@ var Logger = (function () {
             if (tag)
                 logParts.unshift("[" + tag.toUpperCase() + "]");
         }
-        // Redirect logs to a file
-        if (this.logWriteStream) {
-            var line = logParts.join(' ') + '\n';
-            this.logWriteStream.write(line);
-        }
-        else {
-            console.log.apply(console, logParts);
-        }
+        this._log(logParts);
         return true;
     };
-    /**
-     * Redirect logs to a file
-     * @param path The path of the file which is going to contain logs
-     * @param append Append logs to the file instead of recreating it
-     * @param stylize Use styles, colors, ... for logs
-     */
-    Logger.prototype.logToFile = function (path, append, stylize) {
-        if (append === void 0) { append = false; }
-        if (stylize === void 0) { stylize = true; }
-        var options = {
-            defaultEncoding: 'utf8',
-            autoClose: true
-        };
-        if (append) {
-            options.flags = 'a';
-        }
-        this.logWriteStream = fs.createWriteStream(path, options);
-        this.stylize = stylize;
-    };
-    /**
-     * Display logs in the console
-     * @param stylize Use styles, colors, ... for logs
-     */
-    Logger.prototype.logToConsole = function (stylize) {
-        if (stylize === void 0) { stylize = true; }
-        if (this.logWriteStream) {
-            this.logWriteStream.end();
-        }
-        this.logWriteStream = null;
-        this.stylize = stylize;
+    Logger.prototype._log = function (logParts) {
+        console.log.apply(console, logParts);
     };
     Logger.prototype.verbose = function () {
         var message = [];
@@ -138,4 +102,5 @@ var Logger = (function () {
     Logger["default"] = new Logger();
     return Logger;
 }());
+exports.Logger = Logger;
 exports["default"] = Logger;

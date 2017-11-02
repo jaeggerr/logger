@@ -1,9 +1,7 @@
-import * as fs from 'fs'
-import { log } from 'util'
-import LogLevel from './log-levels'
 import * as moment from 'moment'
+import LogLevel from './log-levels'
 
-class Logger {
+export class Logger {
   static readonly default = new Logger()
 
   /**
@@ -34,11 +32,6 @@ class Logger {
   stylize: boolean = true
 
   /**
-   * File to which logs should be redirected
-   */
-  private logWriteStream: fs.WriteStream | null
-
-  /**
    * Logs a message to the console
    * @param level The log level
    * @param message The message to log
@@ -63,44 +56,12 @@ class Logger {
       if (tag) logParts.unshift(`[${tag.toUpperCase()}]`)
     }
 
-    // Redirect logs to a file
-    if (this.logWriteStream) {
-      const line = logParts.join(' ') + '\n'
-      this.logWriteStream.write(line)
-    } else {
-      console.log(...logParts)
-    }
+    this._log(logParts)
     return true
   }
 
-  /**
-   * Redirect logs to a file
-   * @param path The path of the file which is going to contain logs
-   * @param append Append logs to the file instead of recreating it
-   * @param stylize Use styles, colors, ... for logs
-   */
-  logToFile (path: string, append: boolean = false, stylize: boolean = true) {
-    const options: any = {
-      defaultEncoding: 'utf8',
-      autoClose: true
-    }
-    if (append) {
-      options.flags = 'a'
-    }
-    this.logWriteStream = fs.createWriteStream(path, options)
-    this.stylize = stylize
-  }
-
-  /**
-   * Display logs in the console
-   * @param stylize Use styles, colors, ... for logs
-   */
-  logToConsole (stylize: boolean = true) {
-    if (this.logWriteStream) {
-      this.logWriteStream.end()
-    }
-    this.logWriteStream = null
-    this.stylize = stylize
+  _log (logParts: any[]) {
+    console.log(...logParts)
   }
 
   verbose (...message: any[]) {

@@ -3,8 +3,6 @@ import Logger from '../logger'
 
 const message = 'Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?'
 
-// Logger.default.logToFile('/Users/jaeger/Downloads/logs.log', false, true)
-
 console.log('Log in verbose mode...')
 Logger.default.level = LogLevel.Verbose
 logMessageInAllModes()

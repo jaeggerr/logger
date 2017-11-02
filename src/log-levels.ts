@@ -1,5 +1,5 @@
 import { log } from 'util'
-import * as chalk from 'chalk'
+import chalk from 'chalk'
 import * as console from 'console'
 import { warn } from './index'
 

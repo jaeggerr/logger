@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-var chalk = require("chalk");
+var chalk_1 = require("chalk");
 var LogLevel;
 (function (LogLevel) {
     LogLevel[LogLevel["None"] = 0] = "None";
@@ -38,32 +38,32 @@ var LogLevel;
             tag = " " + tag.toUpperCase() + " ";
             switch (level) {
                 case LogLevel.Verbose:
-                    tag = chalk.bgBlack.bold.white(tag);
+                    tag = chalk_1["default"].bgBlack.bold.white(tag);
                     break;
                 case LogLevel.Debug:
-                    tag = chalk.bgBlue.bold.white(tag);
+                    tag = chalk_1["default"].bgBlue.bold.white(tag);
                     break;
                 case LogLevel.Info:
-                    tag = chalk.bgGreen.bold.black(tag);
+                    tag = chalk_1["default"].bgGreen.bold.black(tag);
                     break;
                 case LogLevel.Warn:
-                    tag = chalk.bgYellow.bold.black(tag);
+                    tag = chalk_1["default"].bgYellow.bold.black(tag);
                     break;
                 case LogLevel.Error:
-                    tag = chalk.bgRed.bold.white(tag);
+                    tag = chalk_1["default"].bgRed.bold.white(tag);
                     break;
                 default:
-                    tag = chalk.bgBlack.bold.white(tag);
+                    tag = chalk_1["default"].bgBlack.bold.white(tag);
                     break;
             }
             message.push(tag);
         }
         if (level === LogLevel.Error) {
-            var logPart = (_a = chalk.bgRed).white.apply(_a, log);
+            var logPart = (_a = chalk_1["default"].bgRed).white.apply(_a, log);
             message.push(logPart);
         }
         else if (level === LogLevel.Warn) {
-            var logPart = (_b = chalk.bgYellow).black.apply(_b, log);
+            var logPart = (_b = chalk_1["default"].bgYellow).black.apply(_b, log);
             message.push(logPart);
         }
         else {
