@@ -1,7 +1,4 @@
-import { log } from 'util'
 import chalk from 'chalk'
-import * as console from 'console'
-import { warn } from './index'
 
 enum LogLevel {
   None = 0, // No logs
