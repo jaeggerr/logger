@@ -1,0 +1,29 @@
+{
+  "name": "jaeger-logger",
+  "version": "0.1.7",
+  "description": "Logger library.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf ./dist/* && tsc -p ./tsconfig.json",
+    "test": "ts-node-dev ./src/test/index.ts"
+  },
+  "author": "Cedric Kemp",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^8.0.19",
+    "eslint-plugin-typescript": "^0.3.0",
+    "ts-node-dev": "^1.0.0-pre.4",
+    "tslint": "^5.5.0",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.4.2",
+    "typescript-eslint-parser": "^4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "minimist": "^1.2.0",
+    "moment": "^2.18.1"
+  }
+}
